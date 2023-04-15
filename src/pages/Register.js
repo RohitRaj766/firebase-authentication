@@ -17,39 +17,41 @@ function Register() {
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  useEffect(() => {
-    if (currentUser) {
-      navigate("/");
-    }
-  }, [currentUser, navigate]);
   const [message, setMessage] = useState("");
   const words = errorMessage.split(" ");
   const errorCode = words.slice(2).join(" ");
-  useEffect(() => {
-    if (currentUser) {
-      navigate("/");
-    }
-  }, [currentUser, navigate]);
   const { email, password, displayName, passwordConfirm } = state;
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password !== passwordConfirm) {
       setMessage("Passwords do not match.");
     } else {
-      dispatch(registerInitiate(email, password));
-      if (successMessage === "Registration Done") {
+      new Promise((resolve, reject) => {
         dispatch(registerInitiate(email, password));
+        resolve();
+      })
+      .then(() => {
+        const confirmBox = window.confirm("Registration done. You will be redirected now.");
+        navigate("/login");
+        if (currentUser) {
+          if (confirmBox === true) {
+            navigate("/login");
+          } else {
+            setMessage("");
+          }
+        } else {
+          setMessage(errorMessage);
+        }
         setState({
           email: "",
           displayName: "",
           password: "",
           passwordConfirm: "",
         });
-      } else {
-        setMessage(errorMessage);
-      }
+      });
     }
   };
+  
   const handleChange = (e) => {
     let { name, value } = e.target;
     setState({ ...state, [name]: value });
@@ -57,7 +59,7 @@ function Register() {
   return (
     <>
       <div id="register-form">
-        <form className="form-signin" onSubmit={handleSubmit}>
+        <form className="form-signin" action="../pages/Login.js" onSubmit={handleSubmit}>
           <h1>Sign Up</h1>
           <input
             type="text"

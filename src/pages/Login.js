@@ -35,14 +35,34 @@ function Login() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!email || !password) {
+    if (!email || !password ) {
       setMessage("Fill all fields.");
     } else {
-      dispatch(loginInitiate(email, password));
-      setState({ email: "", password: "" });
-      setMessage(errorMessage);
+      new Promise((resolve, reject) => {
+        dispatch(loginInitiate(email, password));
+        resolve();
+      })
+        .then(() => {
+          const confirmBox = window.confirm("Login done. You will be redirected now");
+          navigate("/");
+          if (confirmBox === true) {
+              navigate("/");
+          } else {
+            setMessage("");
+          }
+          setState({
+            email: "",
+            displayName: "",
+            password: "",
+            passwordConfirm: "",
+          });
+        })
+        .catch(() => {
+          setMessage(errorMessage);
+        });
     }
   };
+  
   const handleChange = (e) => {
     let { name, value } = e.target;
     setState({ ...state, [name]: value });
