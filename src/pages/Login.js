@@ -108,7 +108,7 @@ function Login() {
             <i className="fas fa-sign-in-alt"></i> Sign In
           </button>
           <hr />
-          <p>Don't have an account</p>
+          <p>Don't have an account ?</p>
           <Link to="/register">
             <button
               className="btn btn-primary btn-block"

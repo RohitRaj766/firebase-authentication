@@ -19,9 +19,11 @@ function App() {
       }
     })
   }, [])
+
   return (
     <BrowserRouter>
       <div className="App">
+      <div id="particles-js"></div>
         <Routes>
           <Route
             exact

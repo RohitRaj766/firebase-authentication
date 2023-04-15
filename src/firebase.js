@@ -2,7 +2,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, FacebookAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, signInWithPopup } from "firebase/auth";
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyCr1VvDCzaahrPbhGeX2mAbCvQAyFy9T68",
   authDomain: "authentication-baaf4.firebaseapp.com",
