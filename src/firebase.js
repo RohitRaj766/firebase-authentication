@@ -1,5 +1,7 @@
 
 import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider, FacebookAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, signInWithPopup } from "firebase/auth";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyCr1VvDCzaahrPbhGeX2mAbCvQAyFy9T68",
@@ -9,10 +11,10 @@ const firebaseConfig = {
   messagingSenderId: "1095533691183",
   appId: "1:1095533691183:web:719cc366273438aa81a1da"
 };
-
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-const googleAuthPProvider = new firebase.auth.googleAuthPProvider()
-const facebookAuthPProvider = new firebase.auth.facebookAuthPProvider()
+const googleAuthProvider = new GoogleAuthProvider();
+const facebookAuthProvider = new FacebookAuthProvider();
 
-export{auth , googleAuthPProvider, facebookAuthPProvider}
+export { auth, googleAuthProvider, facebookAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, signInWithPopup };

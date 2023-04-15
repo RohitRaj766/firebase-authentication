@@ -10,6 +10,7 @@
     max-width: 410px;
     padding: 15px;
     margin: auto;
+    text-align: center;
   }
   #logreg-forms .form-control {
     position: relative;
